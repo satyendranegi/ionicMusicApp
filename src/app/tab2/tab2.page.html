@@ -1,0 +1,199 @@
+<ion-header >
+  <ion-toolbar color="dark">
+    <ion-title *ngIf="!activeTrack" color="light">
+      Uttrakhandi songs player
+    </ion-title>
+    <ion-title *ngIf="activeTrack" color="light">
+  {{ activeTrack.name }}<ion-icon name="musical-note"></ion-icon>
+    </ion-title>
+    <ion-button fill="clear" (click)="homeGrid()" color="light">
+    <ion-icon *ngIf="!hideGrid" slot="start" name="caret-down-outline"></ion-icon>
+    <ion-icon *ngIf="hideGrid" slot="start" name="caret-up-outline"></ion-icon>
+  </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="seeList">
+    <ion-item button  *ngFor="let track of playlist" (click)="start(track)">
+      <ion-thumbnail slot="start">
+        <!-- <img src="./assets/icon/thumbnail.svg" id="picture"> -->
+        <img src="{{'../assets/img/'+track.Name+'.jpg'}}" id="picture">
+      </ion-thumbnail>
+      <ion-label [color]="track == activeTrack ? 'success' : 'light'">
+        <!-- <img src="http://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/audio_wave.png" width="25px"> -->
+        {{track.Name}}<ion-icon *ngIf="track == activeTrack" name="musical-note"></ion-icon>
+      </ion-label>
+      <!-- <img src="./assets/mp3/Outfit.wav" *ngIf="!seeList"> -->
+    </ion-item>
+  </ion-list>
+      <img src="{{'../assets/img/'+trackArt.Name+'.jpg'}}" *ngIf="playerImage"> 
+      <ion-grid *ngIf="hideGrid">
+        <ion-row>
+          <ion-col (click)="songByArtist('mix')">
+            <ion-thumbnail >
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail >
+           <ion-label color="light">
+           mix song
+           </ion-label>
+          </ion-col>
+          <ion-col (click)="songByArtist('narendrasinghnegi')">
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light" (click)="TrackListByArtist('FwaBaghaRe')">
+           Gajendra rana top 10 song
+           </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light" (click)="TrackListByArtist('Guru Randhava')">
+           Honey Singh top 10 song
+           </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light" (click)="TrackListByArtist('GarmiFtVarunnora')">
+           Narendra Singh Negi top 10 song
+           </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg" (click)="TrackListByArtist('Noori')">
+            </ion-thumbnail>
+           <ion-label color="light">
+           Gajendra rana top 10 song
+           </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light">
+           Honey Singh top 10 song
+           </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light">
+           Narendra Singh Negi top 10 song
+           </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light">
+           Gajendra rana top 10 song
+           </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light">
+           Honey Singh top 10 song
+           </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light">
+           Narendra Singh Negi top 10 song
+           </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light">
+           Gajendra rana top 10 song
+           </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-thumbnail>
+              <img src="./assets/icon/thumbnail.svg">
+            </ion-thumbnail>
+           <ion-label color="light">
+           Honey Singh top 10 song
+           </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>
+
+<!-- footer -->
+
+<ion-footer *ngIf="activeTrack">
+<ion-toolbar color="dark">
+<ion-row>
+<ion-col size="12" class="ion-text-center" color="success" *ngIf="!seeList">
+{{ activeTrack.name }}<ion-icon name="musical-notes"></ion-icon>
+</ion-col>
+<ion-col size="12" class="ion-text-right">
+<ion-button fill="clear" (click)="seeTrackList()" color="light">
+<ion-icon name="list" ></ion-icon>
+</ion-button>
+</ion-col>
+<!-- <ion-col size="12" class="ion-text-center">
+<ion-col size="5.5" class="ion-text-left">
+<ion-button fill="clear" (click)="volumeDowne()" color="light">
+<ion-icon ios="ios-volume-low" md="md-volume-low" class="ion-text-left"></ion-icon>
+</ion-button>
+</ion-col>
+
+<ion-col size="5.5" class="ion-text-right">
+<ion-button fill="clear" (click)="volumeUp()" color="light">
+<ion-icon ios="ios-volume-high" md="md-volume-high" class="ion-text-right"></ion-icon>
+</ion-button>
+</ion-col>
+
+</ion-col> -->
+<ion-col size="1.5">{{progressTime}}</ion-col>
+<ion-col size="9">
+<ion-range #range [(ngModel)]="progress" color="success" (touchend)="seek()" (mouseup)="seek()"></ion-range>
+</ion-col><ion-col size="1.5">{{timeDuration}}</ion-col>
+<ion-col size="12" class="ion-text-center">
+
+  <ion-button fill="clear" (click)="randomSong1()" [color]="random == true ? 'success' : 'light'">
+    <ion-icon slot="icon-only" name="shuffle"></ion-icon>
+    </ion-button>
+  
+<ion-button fill="clear" (click)="prev()" color="light">
+<ion-icon slot="icon-only" name="play-skip-back"></ion-icon>
+</ion-button>
+
+<ion-button fill="clear" (click)="togglePlayer(false)" *ngIf="!isPlaying" color="light">
+<ion-icon slot="icon-only" name="play"></ion-icon>
+</ion-button>
+
+<ion-button fill="clear" (click)="togglePlayer(true)" *ngIf="isPlaying" color="light">
+<ion-icon slot="icon-only" name="pause"></ion-icon>
+</ion-button>
+
+<ion-button fill="clear" (click)="next()" color="light">
+<ion-icon slot="icon-only" name="play-skip-forward"></ion-icon>
+</ion-button>
+
+<ion-button fill="clear" (click)="repeatSong()" [color]="repeat == true ? 'success' : 'light'">
+  <ion-icon slot="icon-only" name="repeat"></ion-icon>
+</ion-button>
+
+</ion-col>
+</ion-row>
+</ion-toolbar>
+</ion-footer>
